@@ -46,7 +46,7 @@ public class PersonController {
         return "people/new";
     }
 
-    // http://127.0.0.1/people -> click on "Create new Person" -> http://127.0.0.1/people/new
+    // http://127.0.0.1/people/new -> click on "Create new Person" -> http://127.0.0.1/people
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
 
@@ -60,7 +60,7 @@ public class PersonController {
         return "redirect:/people";
     }
 
-    // http://127.0.0.1/5 -> click on "Edit" -> http://127.0.0.1/edit -> fill values and show form
+    // http://127.0.0.1/5/edit -> click on "Edit" -> http://127.0.0.1/edit -> fill values and show form
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("person", personDao.show(id));

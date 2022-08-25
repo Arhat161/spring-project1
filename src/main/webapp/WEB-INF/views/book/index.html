@@ -15,13 +15,13 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="/people" class="nav-link px-2 text-white">People</a></li>
-                <li><a href="/book" class="nav-link px-2 text-white">Book</a></li>
+                <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
+                <li><a href="/people" class="nav-link px-2 text-white">Читатели</a></li>
+                <li><a href="/book" class="nav-link px-2 text-white">Книги</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
             </form>
 
             <div class="text-end">
@@ -37,24 +37,24 @@
             <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Author</th>
-                <th scope="col">Year</th>
+                <th scope="col">Название книги</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Год издания</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="book : ${allBooks}">
                 <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookId()}">id</a></td>
-                <td><a th:href="@{/book/{id}(id=${book.getBookName()})}" th:text="${book.getBookName()}">bookName</a></td>
-                <td><a th:href="@{/book/{id}(id=${book.getBookAuthor()})}" th:text="${book.getBookAuthor()}">bookAuthor</a></td>
-                <td><a th:href="@{/book/{id}(id=${book.getBookYear()})}" th:text="${book.getBookYear()}">bookYear</a></td>
+                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookName()}">bookName</a></td>
+                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookAuthor()}">bookAuthor</a></td>
+                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookYear()}">bookYear</a></td>
             </tr>
             </tbody>
         </table>
     </div>
     <div>
         <hr>
-        <a href="/people/new">Create new Book</a>
+        <a href="/book/new">+Добавить книгу</a>
     </div>
 </div>
 </body>

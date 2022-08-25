@@ -34,7 +34,7 @@ public class BookDAO {
     // update one book in table
     public void update(int id, Book updatedBook) {
         jdbcTemplate.update("UPDATE Book SET book_name = ?, book_author = ?, book_year = ? WHERE book_id = ?",
-                updatedBook.getBookId(), updatedBook.getBookAuthor(), updatedBook.getBookYear(), id);
+                updatedBook.getBookName(), updatedBook.getBookAuthor(), updatedBook.getBookYear(), id);
     }
     // get book owner by book id
     public Optional<Person> getBookOwnerByBookId(int bookId) {
