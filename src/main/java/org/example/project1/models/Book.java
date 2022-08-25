@@ -36,14 +36,6 @@ public class Book {
         this.bookId = bookId;
     }
 
-    /*public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }*/
-
     public String getBookName() {
         return bookName;
     }

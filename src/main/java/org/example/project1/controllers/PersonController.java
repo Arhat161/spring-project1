@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.awt.print.Book;
+import java.util.List;
 
 @Controller
 @RequestMapping("/people")
@@ -26,7 +28,6 @@ public class PersonController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", personDao.index());
-        System.out.println("attribute given!");
         return "people/index";
     }
 
@@ -34,8 +35,10 @@ public class PersonController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDao.show(id));
+        model.addAttribute("allBooks", personDao.getBooksByPersonId(id));
         return "people/show";
     }
+
     // http://127.0.0.1/people/new
     // show form
     @GetMapping("/new")
@@ -47,8 +50,6 @@ public class PersonController {
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
 
-        System.out.println(person);
-
         personValidator.validate(person, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -58,6 +59,7 @@ public class PersonController {
         personDao.save(person);
         return "redirect:/people";
     }
+
     // http://127.0.0.1/5 -> click on "Edit" -> http://127.0.0.1/edit -> fill values and show form
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {

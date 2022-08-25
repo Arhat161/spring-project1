@@ -41,6 +41,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Fio</th>
                 <th scope="col">Year Of Born</th>
+                <th scope="col">Current read Books</th>
             </tr>
             </thead>
             <tbody>
@@ -51,6 +52,31 @@
                 </td>
                 <td><a th:href="@{/people/{id}(id=${person.getPersonId()})}"
                        th:text="${person.getPersonYearBorn()}">yearOfBorn</a></td>
+                <td>
+                    <div th:if="${allBooks.isEmpty()}">
+                        <p>Человек пока не взял ни одной книги</p>
+                    </div>
+                    <div th:if="${!allBooks.isEmpty()}">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Year</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="book : ${allBooks}">
+                                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookId()}">id</a></td>
+                                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookName()}">bookName</a></td>
+                                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookAuthor()}">bookAuthor</a></td>
+                                <td><a th:href="@{/book/{id}(id=${book.getBookId()})}" th:text="${book.getBookYear()}">bookYear</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><a class="btn btn-primary" th:href="@{/people/{id}/edit(id=${person.getPersonId()})}" role="button">EDIT</a>
